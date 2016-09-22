@@ -31,25 +31,39 @@ app.get('/', function(req, res){
 });
 
 // test get
-app.get('/assignments', function(req, res){
-  // declare testAssignment variable
-  var testAssignment = new Assignment({
-    assignment_name: 'Super Fun Mathematical Time',
-    student_name: {
-      first: 'Luis',
-      last: 'Matos'
-    },
-    score: 100
-  }); // end testAssignment declaration
+// app.get('/assignments', function(req, res){
+//   // declare testAssignment variable
+//   var testAssignment = new Assignment({
+//     assignment_name: 'Super Fun Mathematical Time',
+//     student_name: {
+//       first: 'Luis',
+//       last: 'Matos'
+//     },
+//     score: 100
+//   }); // end testAssignment declaration
+//
+//   // save testAssignment
+//   testAssignment.save(function(err){
+//     if(err){
+//       console.log('error occurred:', err);
+//       res.sendStatus(500);
+//     } else {
+//       console.log('testAssignment saved successfully!');
+//       res.sendStatus(201);
+//     }
+//   }); // end save testAssignment
+// }); // end test get
 
-  // save testAssignment
-  testAssignment.save(function(err){
+app.get('/all', function(req, res){
+  console.log('/all route hit');
+
+  Assignment.find({}, function(err, dbResults){
     if(err){
       console.log('error occurred:', err);
       res.sendStatus(500);
     } else {
-      console.log('testAssignment saved successfully!');
-      res.sendStatus(201);
+      console.log('/all route returned:', dbResults);
+      res.send(dbResults);
     }
-  }); // end save testAssignment
-}); // end test get
+  });
+});
