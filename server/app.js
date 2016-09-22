@@ -67,3 +67,29 @@ app.get('/all', function(req, res){
     }
   });
 });
+
+app.post('/create', function(req, res){
+  console.log('hit the /create post with', req.body);
+
+  var sentData = req.body;
+
+  var newAssignment = new Assignment({
+    assignment_name: sentData.assignment_name,
+    student_name: {
+      first: sentData.first,
+      last: sentData.last
+    },
+    score: sentData.score
+  });
+
+  newAssignment.save(function(err){
+      if(err){
+        console.log('error occurred:', err);
+        res.sendStatus(500);
+      } else {
+        console.log('newAssignment saved successfully!');
+        res.sendStatus(201);
+      }
+    });
+
+});
