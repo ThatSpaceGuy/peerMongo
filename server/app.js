@@ -29,3 +29,27 @@ app.get('/', function(req, res){
   console.log('base url hit');
   res.sendFile(path.resolve('public/index.html'));
 });
+
+// test get
+app.get('/assignments', function(req, res){
+  // declare testAssignment variable
+  var testAssignment = new Assignment({
+    assignment_name: 'Super Fun Mathematical Time',
+    student_name: {
+      first: 'Luis',
+      last: 'Matos'
+    },
+    score: 100
+  }); // end testAssignment declaration
+
+  // save testAssignment
+  testAssignment.save(function(err){
+    if(err){
+      console.log('error occurred:', err);
+      res.sendStatus(500);
+    } else {
+      console.log('testAssignment saved successfully!');
+      res.sendStatus(201);
+    }
+  }); // end save testAssignment
+}); // end test get

@@ -9,7 +9,7 @@ var assignmentSchema = new Schema({
     last: String
   },
   score: Number,
-  date_completed: Date
+  date_completed: {type: Date, default: Date.now}
 });
 
 var Assignment = mongoose.model('assignments', assignmentSchema);
