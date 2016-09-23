@@ -73,7 +73,10 @@ myApp.controller('postController', ['$scope','$http',function($scope,$http){
         bookView.append('<tr><td>'+(i+1)+'</td><td>'+gradeBook[i].assignment_name+
         '</td><td>'+gradeBook[i].student_name.first+
         '</td><td>'+gradeBook[i].student_name.last+
-        '</td><td>'+gradeBook[i].score+'</td></tr>');
+        '</td><td>'+gradeBook[i].score+
+        '</td><td>'+'<button ng-click="showOne()">Hide Other Assignments</button>'+
+        '</td><td>'+'<button ng-click="updateOne()">Update Assignments</button>'+
+        '</td><td>'+'<button ng-click="showOne()">Hide Other Assignments</button>'+'</td></tr>');
       }
 
     });

@@ -57,7 +57,12 @@ router.post('/', function(req, res){
 
 // delete assignment
 router.delete('/', function(req, res){
-  Assignment.remove({ _id:req.body});
+
+  Assignment.findByIdAndRemove({"_id":req.body.id}, function(){
+    console.log("Assignment "+ req.body.id +" has been deleted.");
+    res.send(200);
+  });
+
 });
 
 module.exports = router;

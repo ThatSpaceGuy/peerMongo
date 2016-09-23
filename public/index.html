@@ -40,20 +40,23 @@
 			</tr>
 		</table>
 		<button ng-click="addItem()">Add Assignment</button><br>
-		
-		<button ng-click="showAll()">Show All Assignments</button><br>
-			<table>
-				<tr>
-					<th>Entry #</th>
-					<th>Title</th>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Score</th>
-				</tr>
-				<div id="gradeBookView">
 
-				</div>
-			</table>
+		<button ng-click="showAll()">Show All Assignments</button><br>
+		<table>
+			<tr>
+				<th>Entry #</th>
+				<th>Title</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Score</th>
+				<th>Hide Others?</th>
+				<th>Update?</th>
+				<th>Delete?</th>
+			</tr>
+		</table>
+		<table id="gradeBookView">
+
+		</table>
 	</div>
 </body>
 </html>
