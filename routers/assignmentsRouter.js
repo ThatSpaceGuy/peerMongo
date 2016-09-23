@@ -14,6 +14,16 @@ router.get('/:id?', function(req, res){
   console.log('/all route hit');
   if(req.params.id !== undefined){
   console.log("The params are:", req.params);
+  Assignment.find({"_id":req.params.id}, function(err, dbResults){
+    if(err){
+      console.log('error occurred:', err);
+      res.sendStatus(500);
+    } else {
+      console.log('/all route returned:', dbResults);
+      res.send(dbResults);
+
+    }// end if else
+  });// end find assignment
   }
   else {
     //find assignment function
@@ -73,7 +83,9 @@ router.put('/', function(req, res){
 
   console.log("this is the body", req.body);
 
-  Assignment.findByIdAndUpdate({"_id":req.body.id},{ assignment_name: req.body.assignment_name,student_name:{first:req.body.student_name.first,last:req.body.student_name.last}, score: req.body.score}, function (err){
+// assignment_name: req.body.assignment_name,student_name:{first:req.body.student_name.first,last:req.body.student_name.last}, score: req.body.score
+
+  Assignment.findByIdAndUpdate({"_id":req.body.id},req.body, function (err){
     if(err){
       console.log(err);
     }

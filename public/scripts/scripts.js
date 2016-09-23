@@ -40,6 +40,7 @@ myApp.controller('postController', ['$scope','$http',function($scope,$http){
   $scope.deleteItem = function(){
     console.log('in deleteItem', $scope);
     console.log('All Items:', gradeBook);
+    // grab number from the button
     var deleteButton = angular.element(document.getElementById('deleteB'));
     var deleteText=deleteButton.html();
     console.log(deleteText);
@@ -101,7 +102,88 @@ myApp.controller('postController', ['$scope','$http',function($scope,$http){
     });
 
   };// end showAll
-      $scope.showAll();
+  $scope.showAll();
+
+  $scope.showOne = function(){
+    console.log('in showOne', $scope);
+    // grab value from button
+    var showButton = angular.element(document.getElementById('showB'));
+    var showText=showButton.html();
+    console.log(showText);
+    var recordNum = Number(showText[showText.length-1])-1;
+    console.log(recordNum);
+    var idToShow = {
+      id: gradeBook[recordNum]._id
+    };
+    console.log(idToShow);
+
+
+    $http({
+      method: 'GET',
+      url: '/assignments/'+idToShow.id,
+    }).then(function ( response ){
+      console.log('back from server with:', response);
+      gradeBook = response.data;
+      var bookView = angular.element(document.getElementById('gradeBookView'));
+      bookView.empty();
+      for (var i = 0; i < gradeBook.length; i++) {
+        // first add blank strings where needed
+        if (!(gradeBook[i].assignment_name)){
+          gradeBook[i].assignment_name = '';
+        }
+        if (!(gradeBook[i].student_name)){
+          gradeBook[i].student_name= {
+            first: '',
+            last:''
+          };
+        } else {
+          if (!(gradeBook[i].student_name.first)){
+            gradeBook[i].student_name.first = '';
+          }
+          if (!(gradeBook[i].student_name.last)){
+            gradeBook[i].student_name.last = '';
+          }
+        }
+        if (!(gradeBook[i].score)){
+          gradeBook[i].score = '';
+        }
+
+        bookView.append('<tr><td>'+(i+1)+'</td><td>'+gradeBook[i].assignment_name+
+        '</td><td>'+gradeBook[i].student_name.first+
+        '</td><td>'+gradeBook[i].student_name.last+
+        '</td><td>'+gradeBook[i].score+'</td></tr>');
+      }
+    });
+
+  };// end showOne
+
+  $scope.updateItem = function(){
+    console.log('in updateItem', $scope);
+    console.log('All Items:', gradeBook);
+    // grab number from the button
+    var updateButton = angular.element(document.getElementById('updateB'));
+    var updateText=updateButton.html();
+    console.log(updateText);
+    var recordNum = Number(updateText[updateText.length-1])-1;
+    console.log(recordNum);
+
+    var idToUpdate = {
+      id: gradeBook[recordNum]._id,
+      assignment_name: 'Final Exam'
+    };
+    console.log(idToUpdate);
+
+    $http({
+      method: 'PUT',
+      url: '/assignments',
+      data: idToUpdate
+    }).then(function ( response ){
+      console.log('back from server with:', response);
+    });
+
+    $scope.showAll();
+
+  }; // end update Item
 }]);
 
 // myApp.controller('showController', ['$scope','$http',function($scope,$http){
