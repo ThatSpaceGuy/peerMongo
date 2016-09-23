@@ -8,19 +8,19 @@ var Assignment = require('../models/assignments');
 //get all assignments route
 router.get('/:id?', function(req, res){
   console.log('/all route hit');
-if(req.params.id !== undefined){
+  if(req.params.id !== undefined){
   console.log("The params are:", req.params);
-}
-else {
-  //find assignment function
-  console.log("No params detected");
-  Assignment.find({}, function(err, dbResults){
-    if(err){
-      console.log('error occurred:', err);
-      res.sendStatus(500);
-    } else {
-      console.log('/all route returned:', dbResults);
-      res.send(dbResults);
+  }
+  else {
+    //find assignment function
+    console.log("No params detected");
+    Assignment.find({}, function(err, dbResults){
+      if(err){
+        console.log('error occurred:', err);
+        res.sendStatus(500);
+      } else {
+        console.log('/all route returned:', dbResults);
+        res.send(dbResults);
 
       }// end if else
     });// end find assignment
@@ -60,8 +60,22 @@ router.delete('/', function(req, res){
   Assignment.findByIdAndRemove({"_id":req.body.id}, function(){
     console.log("Assignment "+ req.body.id +" has been deleted.");
     res.send(200);
+  });// end callback
+});// end delete
+
+// update assignment
+router.put('/', function(req, res){
+
+  console.log("this is the body", req.body);
+
+  Assignment.findByIdAndUpdate({"_id":req.body.id},{ assignment_name: req.body.assignment_name,student_name:{first:req.body.student_name.first,last:req.body.student_name.last}, score: req.body.score}, function (err){
+    if(err){
+      console.log(err);
+    }
+    else{
+      console.log("Assignment "+ req.body.id +" has been updated.");
+      res.send(200);
+    }
   });
-
-});
-
+});// End put route
 module.exports = router;
