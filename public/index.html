@@ -40,7 +40,13 @@
 			</tr>
 		</table>
 		<button ng-click="addItem()">Add Assignment</button><br>
-
+		<p>
+			To work with one record individually, please enter the record number:
+			<input type="number" ng-model="recNum" placeholder="Record Number">
+		</p>
+		<button ng-click="showOne()" id="showB">Show Only #{{recNum}}</button>
+		<button ng-click="updateItem()" id="updateB">Update #{{recNum}}</button>
+		<button ng-click="deleteItem()" id="deleteB">Delete #{{recNum}}</button>
 		<button ng-click="showAll()">Show All Assignments</button><br>
 		<table>
 			<tr>
@@ -49,14 +55,12 @@
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Score</th>
-				<th>Hide Others?</th>
-				<th>Update?</th>
-				<th>Delete?</th>
 			</tr>
 		</table>
 		<table id="gradeBookView">
 
 		</table>
+
 	</div>
 </body>
 </html>

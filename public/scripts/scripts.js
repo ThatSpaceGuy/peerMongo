@@ -3,7 +3,7 @@ console.log('scripts.js sourced!');
 
 var myApp = angular.module('myApp',[]);
 
-var allItems = [];
+var gradeBook = [];
 
 /// == Function Declarations == ///
 
@@ -34,9 +34,30 @@ myApp.controller('postController', ['$scope','$http',function($scope,$http){
       console.log('back from server with:', response);
     });
 
-    allItems.push(newObject);
-    console.log('allItems:', allItems);
+    $scope.showAll();
   };
+
+  $scope.deleteItem = function(){
+    console.log('in deleteItem', $scope);
+    console.log('All Items:', gradeBook);
+    deleteButton = angular.element(document.getElementById('deleteB'));
+    deleteText=deleteButton.html();
+    console.log(deleteText);
+    var recordNum = Number(deleteText[deleteText.length-1]);
+
+    var idToDelete = {
+      id: gradeBook[recordNum]._id
+    };
+
+    $http({
+      method: 'DELETE',
+      url: '/assignments',
+      data: idToDelete
+    }).then(function ( response ){
+      console.log('back from server with:', response);
+    });
+    $scope.showAll();
+  }; // end delete Item
 
   $scope.showAll = function(){
     console.log('in showAll', $scope);
@@ -46,7 +67,7 @@ myApp.controller('postController', ['$scope','$http',function($scope,$http){
     }).then(function ( response ){
       console.log('back from server with:', response);
       gradeBook = response.data;
-      bookView = angular.element(document.getElementById('gradeBookView'));
+      var bookView = angular.element(document.getElementById('gradeBookView'));
       bookView.empty();
       for (var i = 0; i < gradeBook.length; i++) {
         // first add blank strings where needed
@@ -73,12 +94,10 @@ myApp.controller('postController', ['$scope','$http',function($scope,$http){
         bookView.append('<tr><td>'+(i+1)+'</td><td>'+gradeBook[i].assignment_name+
         '</td><td>'+gradeBook[i].student_name.first+
         '</td><td>'+gradeBook[i].student_name.last+
-        '</td><td>'+gradeBook[i].score+
-        '</td><td>'+'<button ng-click="showOne()">Hide Others</button>'+
-        '</td><td>'+'<button ng-click="updateOne()">Update</button>'+
-        '</td><td>'+'<button ng-click="deleteOne()">Delete</button>'+'</td></tr>');
+        '</td><td>'+gradeBook[i].score+'</td></tr>');
       }
     });
+
   };// end showAll
       $scope.showAll();
 }]);
