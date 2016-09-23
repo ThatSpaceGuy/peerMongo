@@ -78,9 +78,9 @@ myApp.controller('postController', ['$scope','$http',function($scope,$http){
         '</td><td>'+'<button ng-click="updateOne()">Update</button>'+
         '</td><td>'+'<button ng-click="deleteOne()">Delete</button>'+'</td></tr>');
       }
-
     });
-  };
+  };// end showAll
+      $scope.showAll();
 }]);
 
 // myApp.controller('showController', ['$scope','$http',function($scope,$http){
