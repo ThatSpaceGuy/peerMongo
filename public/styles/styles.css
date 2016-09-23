@@ -6,6 +6,14 @@
 	font: inherit;
 }*/
 
-body {
+body, th, td {
 	text-align: center;
+}
+
+table {
+	margin: auto;
+}
+
+td {
+	min-width: 100px;
 }

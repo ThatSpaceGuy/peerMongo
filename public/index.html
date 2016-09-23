@@ -1,20 +1,49 @@
 <!DOCTYPE html>
 <html ng-app='myApp'>
-	<head>
-		<script src="vendors/angular.min.js"></script>
-    <script src="scripts/scripts.js"></script>
-		<link rel="stylesheet" href="vendors/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/styles.css"/>
-		<title>Page Title</title>
-	</head>
-	<body>
-		<h1>Placeholder Text</h1>
-		<div ng-controller="mainController">
-			What assignment?<input type="text" ng-model="newItem">
-			<p>
-				You've entered: {{ newItem }}
-			</p>
-			<button ng-click="addItem()">Add Assignment</button>
-		</div>
-	</body>
+<head>
+	<script src="vendors/angular.min.js"></script>
+	<script src="scripts/scripts.js"></script>
+	<link rel="stylesheet" href="vendors/bootstrap.min.css">
+	<link rel="stylesheet" href="styles/styles.css"/>
+	<title>Peer Mongo Challenge</title>
+</head>
+<body>
+	<h1>Cool Assignment App</h1>
+	<div ng-controller="postController">
+		<p>
+			What is the assignment?
+			<input type="text" ng-model="assignTitle" placeholder="Assignment Title">
+		</p>
+		<p>
+			What is the name of the student?
+			<input type="text" ng-model="firstName" placeholder="First Name">
+			<input type="text" ng-model="lastName" placeholder="Last Name">
+		</p>
+		<p>
+			What score should be recorded?
+			<input type="text" ng-model="assignScore" placeholder="Evaluation Score">
+		</p>
+		<table>
+			<tr>
+				<th></th>
+				<th>Title</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Score</th>
+			</tr>
+			<tr>
+				<td>You've entered:</td>
+				<td>{{ assignTitle }}</td>
+				<td>{{ firstName }}</td>
+				<td>{{ lastName }}</td>
+				<td>{{ assignScore }}</td>
+			</tr>
+		</table>
+		<button ng-click="addItem()">Add Assignment</button>
+	</div>
+
+	<div ng-controller="postController">
+		<button ng-click="showAll()">Add Assignment</button>
+	</div>
+</body>
 </html>
