@@ -1,7 +1,6 @@
 {
   "name": "peer_mongo",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,5 +12,14 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "mongoose": "^4.6.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msteinbergs/peerMongo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/msteinbergs/peerMongo/issues"
+  },
+  "homepage": "https://github.com/msteinbergs/peerMongo#readme",
+  "description": ""
 }
