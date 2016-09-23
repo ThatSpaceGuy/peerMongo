@@ -169,9 +169,31 @@ myApp.controller('postController', ['$scope','$http',function($scope,$http){
 
     var idToUpdate = {
       id: gradeBook[recordNum]._id,
-      assignment_name: 'Final Exam'
     };
+
+    var newTitle = $scope.assignTitle;
+    var newScore = $scope.assignScore;
+    var newFirst = $scope.firstName;
+    var newLast = $scope.lastName;
+
+    if (newTitle !== ''){
+      idToUpdate.assignment_name = newTitle;
+    }
+    if (newFirst !== '' && newLast !== ''){
+      idToUpdate.student_name = {first: newFirst, last: newLast};
+    }
+
+    if (newScore !== ''){
+      idToUpdate.score = newScore;
+    }
+
     console.log(idToUpdate);
+    // student_name: {
+    //   first: $scope.firstName,
+    //   last: $scope.lastName
+    // },
+
+
 
     $http({
       method: 'PUT',
