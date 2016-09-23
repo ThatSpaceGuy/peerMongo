@@ -12,7 +12,7 @@ var assignmentsRouter = require("../routers/assignmentsRouter");
 
 // use body parser
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+ // app.use(bodyParser.json());
 
 //use router
 app.use('/assignments', assignmentsRouter);
@@ -37,29 +37,5 @@ app.get('/', function(req, res){
   res.sendFile(path.resolve('public/index.html'));
 });
 
-
-
-
-// test get
-// app.get('/assignments', function(req, res){
-//   // declare testAssignment variable
-//   var testAssignment = new Assignment({
-//     assignment_name: 'Super Fun Mathematical Time',
-//     student_name: {
-//       first: 'Luis',
-//       last: 'Matos'
-//     },
-//     score: 100
-//   }); // end testAssignment declaration
-//
-//   // save testAssignment
-//   testAssignment.save(function(err){
-//     if(err){
-//       console.log('error occurred:', err);
-//       res.sendStatus(500);
-//     } else {
-//       console.log('testAssignment saved successfully!');
-//       res.sendStatus(201);
-//     }
-//   }); // end save testAssignment
-// }); // end test get
+//set public folder to static
+app.use(express.static('public'));
