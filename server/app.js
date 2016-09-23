@@ -12,7 +12,7 @@ var assignmentsRouter = require("../routers/assignmentsRouter");
 
 // use body parser
 app.use(bodyParser.urlencoded({extended: false}));
- // app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 //use router
 app.use('/assignments', assignmentsRouter);

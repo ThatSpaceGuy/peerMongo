@@ -26,13 +26,13 @@ router.post('/', function(req, res){
   console.log('hit the /create post with', req.body);
   // get data from body
   var sentData = req.body;
-
+  console.log('sentData:',sentData);
   //create new assignment object from schema
   var newAssignment = new Assignment({
     assignment_name: sentData.assignment_name,
     student_name: {
-      first: sentData.first,
-      last: sentData.last
+      first: sentData.student_name.first,
+      last: sentData.student_name.last
     },
     score: sentData.score
   });// end create newAssignment
