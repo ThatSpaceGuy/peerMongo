@@ -74,9 +74,9 @@ myApp.controller('postController', ['$scope','$http',function($scope,$http){
         '</td><td>'+gradeBook[i].student_name.first+
         '</td><td>'+gradeBook[i].student_name.last+
         '</td><td>'+gradeBook[i].score+
-        '</td><td>'+'<button ng-click="showOne()">Hide Other Assignments</button>'+
-        '</td><td>'+'<button ng-click="updateOne()">Update Assignments</button>'+
-        '</td><td>'+'<button ng-click="showOne()">Hide Other Assignments</button>'+'</td></tr>');
+        '</td><td>'+'<button ng-click="showOne()">Hide Others</button>'+
+        '</td><td>'+'<button ng-click="updateOne()">Update</button>'+
+        '</td><td>'+'<button ng-click="deleteOne()">Delete</button>'+'</td></tr>');
       }
 
     });
