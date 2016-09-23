@@ -6,10 +6,14 @@ var mongoose = require('mongoose');
 var Assignment = require('../models/assignments');
 
 //get all assignments route
-router.get('/', function(req, res){
+router.get('/:id?', function(req, res){
   console.log('/all route hit');
-
+if(req.params.id !== undefined){
+  console.log("The params are:", req.params);
+}
+else {
   //find assignment function
+  console.log("No params detected");
   Assignment.find({}, function(err, dbResults){
     if(err){
       console.log('error occurred:', err);
@@ -17,8 +21,10 @@ router.get('/', function(req, res){
     } else {
       console.log('/all route returned:', dbResults);
       res.send(dbResults);
-    }// end if else
-  });// end find assignment
+
+      }// end if else
+    });// end find assignment
+  }// end req.params else
 });// end get all assignments
 
 //add new assignment route
@@ -48,5 +54,10 @@ router.post('/', function(req, res){
       }// end if else
     });// end newAssignment save
 });// end new assignment route
+
+// delete assignment
+router.delete('/', function(req, res){
+  Assignment.remove({ _id:req.body})
+});
 
 module.exports = router;
