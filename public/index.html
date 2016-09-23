@@ -39,9 +39,21 @@
 				<td>{{ assignScore }}</td>
 			</tr>
 		</table>
-		<button ng-click="addItem()">Add Assignment</button>
+		<button ng-click="addItem()">Add Assignment</button><br>
+		
+		<button ng-click="showAll()">Show All Assignments</button><br>
+			<table>
+				<tr>
+					<th>Entry #</th>
+					<th>Title</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Score</th>
+				</tr>
+				<div id="gradeBookView">
 
-		<button ng-click="showAll()">Show All Assignments</button>
+				</div>
+			</table>
 	</div>
 </body>
 </html>

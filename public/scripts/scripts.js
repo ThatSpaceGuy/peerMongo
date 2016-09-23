@@ -45,9 +45,39 @@ myApp.controller('postController', ['$scope','$http',function($scope,$http){
       url: '/assignments',
     }).then(function ( response ){
       console.log('back from server with:', response);
+      gradeBook = response.data;
+      bookView = angular.element(document.getElementById('gradeBookView'));
+      bookView.empty();
+      for (var i = 0; i < gradeBook.length; i++) {
+        // first add blank strings where needed
+        if (!(gradeBook[i].assignment_name)){
+          gradeBook[i].assignment_name = '';
+        }
+        if (!(gradeBook[i].student_name)){
+          gradeBook[i].student_name= {
+            first: '',
+            last:''
+          };
+        } else {
+          if (!(gradeBook[i].student_name.first)){
+            gradeBook[i].student_name.first = '';
+          }
+          if (!(gradeBook[i].student_name.last)){
+            gradeBook[i].student_name.last = '';
+          }
+        }
+        if (!(gradeBook[i].score)){
+          gradeBook[i].score = '';
+        }
+
+        bookView.append('<tr><td>'+(i+1)+'</td><td>'+gradeBook[i].assignment_name+
+        '</td><td>'+gradeBook[i].student_name.first+
+        '</td><td>'+gradeBook[i].student_name.last+
+        '</td><td>'+gradeBook[i].score+'</td></tr>');
+      }
+
     });
   };
-
 }]);
 
 // myApp.controller('showController', ['$scope','$http',function($scope,$http){

@@ -57,7 +57,7 @@ router.post('/', function(req, res){
 
 // delete assignment
 router.delete('/', function(req, res){
-  Assignment.remove({ _id:req.body})
+  Assignment.remove({ _id:req.body});
 });
 
 module.exports = router;
