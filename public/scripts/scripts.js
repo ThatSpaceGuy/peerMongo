@@ -40,19 +40,21 @@ myApp.controller('postController', ['$scope','$http',function($scope,$http){
   $scope.deleteItem = function(){
     console.log('in deleteItem', $scope);
     console.log('All Items:', gradeBook);
-    deleteButton = angular.element(document.getElementById('deleteB'));
-    deleteText=deleteButton.html();
+    var deleteButton = angular.element(document.getElementById('deleteB'));
+    var deleteText=deleteButton.html();
     console.log(deleteText);
-    var recordNum = Number(deleteText[deleteText.length-1]);
-
+    var recordNum = Number(deleteText[deleteText.length-1])-1;
+    console.log(recordNum);
     var idToDelete = {
       id: gradeBook[recordNum]._id
     };
+    console.log(idToDelete);
 
     $http({
       method: 'DELETE',
       url: '/assignments',
-      data: idToDelete
+      data: idToDelete,
+      headers: {"Content-Type": "application/json;charset=utf-8"}
     }).then(function ( response ){
       console.log('back from server with:', response);
     });

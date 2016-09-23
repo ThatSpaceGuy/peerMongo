@@ -1,9 +1,13 @@
 var express = require("express");
 var router = express.Router();
+var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
 
 var Assignment = require('../models/assignments');
+
+router.use(bodyParser.urlencoded({extended: false}));
+router.use(bodyParser.json());
 
 //get all assignments route
 router.get('/:id?', function(req, res){
@@ -57,7 +61,7 @@ router.post('/', function(req, res){
 
 // delete assignment
 router.delete('/', function(req, res){
-
+  console.log('hit delete route with:',req.body);
   Assignment.findByIdAndRemove({"_id":req.body.id}, function(){
     console.log("Assignment "+ req.body.id +" has been deleted.");
     res.send(200);
