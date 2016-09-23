@@ -8,62 +8,66 @@
 	<title>Peer Mongo Challenge</title>
 </head>
 <body>
-	<h1>Cool Assignment App</h1>
-	<div ng-controller="postController">
-		<p>
-			What is the assignment?
-			<input type="text" ng-model="assignTitle" placeholder="Assignment Title">
-		</p>
-		<p>
-			What is the name of the student?
-			<input type="text" ng-model="firstName" placeholder="First Name">
-			<input type="text" ng-model="lastName" placeholder="Last Name">
-		</p>
-		<p>
-			What score should be recorded?
-			<input type="text" ng-model="assignScore" placeholder="Evaluation Score">
-		</p>
-		<table>
-			<tr>
-				<th></th>
-				<th>Title</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Score</th>
-			</tr>
-			<tr>
-				<td>You've entered:</td>
-				<td>{{ assignTitle }}</td>
-				<td>{{ firstName }}</td>
-				<td>{{ lastName }}</td>
-				<td>{{ assignScore }}</td>
-			</tr>
-		</table>
-		<button ng-click="addItem()">Add Assignment</button><br>
-		<p>
-			To work with one record individually, please enter the record number:
-			<input type="number" ng-model="recNum" placeholder="Record Number">
-		</p>
-		<button ng-click="showOne()" id="showB">Show Only #{{recNum}}</button>
-		<button ng-click="updateItem()" id="updateB">Update #{{recNum}}</button>
-		<button ng-click="deleteItem()" id="deleteB">Delete #{{recNum}}</button>
-		<button ng-click="showAll()">Show All Assignments</button><br>
-		To update information, please enter information in the fields above.<br>
-		In order to update a student's name, both first and last are required
+	<div class="container">
 
-		<table>
-			<tr>
-				<th>Entry #</th>
-				<th>Title</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Score</th>
-			</tr>
-		</table>
-		<table id="gradeBookView">
 
-		</table>
+		<h1>Cool Assignment App</h1>
+		<div ng-controller="postController">
+			<p>
+				What is the assignment?
+				<input type="text" ng-model="assignTitle" placeholder="Assignment Title">
+			</p>
+			<p>
+				What is the name of the student?
+				<input type="text" ng-model="firstName" placeholder="First Name">
+				<input type="text" ng-model="lastName" placeholder="Last Name">
+			</p>
+			<p>
+				What score should be recorded?
+				<input type="text" ng-model="assignScore" placeholder="Evaluation Score">
+			</p>
+			<table>
+				<tr>
+					<th></th>
+					<th>Title</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Score</th>
+				</tr>
+				<tr>
+					<td>You've entered:</td>
+					<td>{{ assignTitle }}</td>
+					<td>{{ firstName }}</td>
+					<td>{{ lastName }}</td>
+					<td>{{ assignScore }}</td>
+				</tr>
+			</table>
+			<button ng-click="addItem()">Add Assignment</button><br>
+			<p>
+				To work with one record individually, please enter the record number:
+				<input type="number" ng-model="recNum" placeholder="Record Number">
+			</p>
+			<button ng-click="showOne()" id="showB">Show Only #{{recNum}}</button>
+			<button ng-click="updateItem()" id="updateB">Update #{{recNum}}</button>
+			<button ng-click="deleteItem()" id="deleteB">Delete #{{recNum}}</button>
+			<button ng-click="showAll()">Show All Assignments</button><br>
+			To update information, please enter information in the fields above.<br>
+			In order to update a student's name, both first and last are required
 
+			<table>
+				<tr>
+					<th>Entry #</th>
+					<th>Title</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Score</th>
+				</tr>
+			</table>
+			<table id="gradeBookView">
+
+			</table>
+
+		</div>
 	</div>
 </body>
 </html>
